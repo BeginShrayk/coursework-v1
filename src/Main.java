@@ -18,19 +18,24 @@ public class Main {
         employees[9] = new Employee("Илья", "Редькин", "Антонович", 3, 50_000);
 
         // Список всех сотрудников
+        System.out.println("Список всех сотрудников");
         for (int i = 0; i < employees.length; i++){
             System.out.println(employees[i].toString());
         }
+        System.out.println();
 
         // Считаем сумму затрат на ЗП в месяц;
+        System.out.println("Считаем сумму затрат на ЗП в месяц");
         int sum = 0;
         for (int i = 0; i < employees.length; i++){
             sum += employees[i].getSalary();
         }
         System.out.println("Сумма затрат на ЗП в месяц: " + sum + " рублей.");
+        System.out.println();
 
         // Находим сотрудника с минимальной ЗП;
-        int minSalary = employees[0].getSalary();
+        System.out.println("Находим сотрудника с минимальной ЗП");
+        double minSalary = employees[0].getSalary();
         String employeeName = employees[0].getName();
         String employeeFamily = employees[0].getFamily();
         String employeeSurname = employees[0].getSurname();
@@ -43,9 +48,11 @@ public class Main {
             }
         }
         System.out.println("Сотрудник с самой маленькой ЗП: " + employeeName + " " + employeeFamily + " " + employeeSurname + ". Зарплата: " + minSalary);
+        System.out.println();
 
         // Находим сотрудника с максимальной ЗП;
-        int maxSalary = employees[0].getSalary();
+        System.out.println("Находим сотрудника с максимальной ЗП");
+        double maxSalary = employees[0].getSalary();
         employeeName = employees[0].getName();
         employeeFamily = employees[0].getFamily();
         employeeSurname = employees[0].getSurname();
@@ -58,12 +65,16 @@ public class Main {
             }
         }
         System.out.println("Сотрудник с самой максимальной ЗП: " + employeeName + " " + employeeFamily + " " + employeeSurname + ". Зарплата: " + maxSalary);
+        System.out.println();
 
         // Подсчитать среднее значение зарплат
+        System.out.println("Подсчитать среднее значение зарплат");
         int averageSalary = sum / employees.length;
         System.out.println("Среднее значение зарплат: " + averageSalary);
+        System.out.println();
 
         // Распечатать ФИО всех сотрудников
+        System.out.println("Распечатать ФИО всех сотрудников");
         for(int i = 0; i < employees.length; i++){
             System.out.println(employees[i].getName() + " " + employees[i].getFamily() + " " + employees[i].getSurname());
         }

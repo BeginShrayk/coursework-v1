@@ -1,32 +1,35 @@
 import java.util.Objects;
 
 public class Employee {
-
     // данные сотрудника
+    private final int id; // Ставим его на первое место, так как уникален и неизменяем.
+
     private String name;  // имя сотрудника
     private String family;  // фамилия сотрудника
     private String surname;  // отчество сотрудника
+
     private int department;  // отдел сотрудника
-    private int salary;// зарплата сотрудника
 
-    // static id
-    private static int idEmployee = 0;
-    private int id;
+    private double salary;// зарплата сотрудника
+    private static int idEmployee = 1; // private так как тоже не должен меняться вне Класса.
 
-    public Employee() {
-        this.id = ++idEmployee; // Добавляем поле, которое проставляется из счетчика, а затем счетчик увеличивает свое значение.
-    }
-
-    // конструктор
-    public Employee(String name, String family, String surname, int department, int salary) {
+    // конструктор (нужен для того чтобы объекты не могли быть созданы некорректно)
+    public Employee(String name,
+                    String family,
+                    String surname,
+                    int department,
+                    double salary
+    ) {
         this.name = name;
         this.family = family;
         this.surname = surname;
         this.department = department;
         this.salary = salary;
+        this.id = idEmployee; // добавляем уникальный айди для сотрудника
+        idEmployee += 1; // Увеличиваем айди, чтобы они не повторялись при повторном вызове конструктора
     }
 
-    // геттеры
+    // геттеры (Нужны для того чтобы дать пользователю возможность доступ на чтение)
     public String getName() {
         return name;
     }
@@ -39,35 +42,43 @@ public class Employee {
     public int getDepartment() {
         return department;
     }
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
     public static int getIdEmployee() {
         return idEmployee;
     }
 
-    // сеттеры
+    // сеттеры (Нужны для того, чтобы пользователь мог менять их)
     public void setDepartment(int department) {
         this.department = department;
     }
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
     // equals && hashCode
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // Нужен для того, чтобы считать объекты равными если данные, которые указаны совпадают
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return department == employee.department && salary == employee.salary && id == employee.id && Objects.equals(name, employee.name) && Objects.equals(family, employee.family) && Objects.equals(surname, employee.surname);
+        return id == employee.id &&
+                department == employee.department
+                && salary == employee.salary
+                && Objects.equals(name, employee.name)
+                && Objects.equals(family, employee.family)
+                && Objects.equals(surname, employee.surname);
     }
     @Override
     public int hashCode() {
         return Objects.hash(name, family, surname, department, salary, id);
     }
+    //  hashCode превращает объект в число, для проверки. Если объекты равны, хеш-коды обязательно равные.
+    // Если объекты не равны, хеш-коды не обязательно должны быть разные.
+    // Если хеш-коды разные, объекты точно не будут равны.
 
     @Override
-    public String toString() {
+    public String toString() { // Нужен для того чтобы приводить наш объект в строковый вид
         return "ФИО: " + name + " " + family + " " + surname + " отдел: " + department + " Зарплата: " + salary;
     }
 }
