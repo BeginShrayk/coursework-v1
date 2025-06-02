@@ -11,7 +11,7 @@ public class Employee {
     private int department;  // отдел сотрудника
 
     private double salary;// зарплата сотрудника
-    private static int idEmployee = 1; // private так как тоже не должен меняться вне Класса.
+    private static int idEmployee; // private так как тоже не должен меняться вне Класса.
 
     // конструктор (нужен для того чтобы объекты не могли быть созданы некорректно)
     public Employee(String name,
@@ -25,8 +25,8 @@ public class Employee {
         this.surname = surname;
         this.department = department;
         this.salary = salary;
-        this.id = idEmployee; // добавляем уникальный айди для сотрудника
-        idEmployee += 1; // Увеличиваем айди, чтобы они не повторялись при повторном вызове конструктора
+        // Увеличиваем айди, чтобы они не повторялись при повторном вызове конструктора
+        this.id = ++idEmployee; // добавляем уникальный айди для сотрудника
     }
 
     // геттеры (Нужны для того чтобы дать пользователю возможность доступ на чтение)
